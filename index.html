@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>我的期末倒计时</title>
+    <style>
+        /* 这里是 CSS：负责网页好不好看 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            font-family: 'Microsoft YaHei', sans-serif;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; }
+        #timer {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 20px 0;
+        }
+        .tip { font-size: 0.9rem; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>距离期末考试还有</h1>
+    <div id="timer">加载中...</div>
+    <p class="tip">自动化专业：稳住，我们能赢！</p>
+</div>
+
+<script>
+    // 这里是 JavaScript：负责让网页动起来
+    function updateTimer() {
+        // 设置期末考试日期（你可以修改这里的时间：年, 月-1, 日）
+        const eventDate = new Date(2026, 0, 15, 9, 0, 0); 
+        const now = new Date();
+        const diff = eventDate - now;
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('timer').innerHTML = 
+            d + "天 " + h + "时 " + m + "分 " + s + "秒";
+    }
+    
+    // 每秒钟刷新一次
+    setInterval(updateTimer, 1000);
+    updateTimer();
+</script>
+
+</body>
+</html>
